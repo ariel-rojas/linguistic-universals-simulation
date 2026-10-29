@@ -13,6 +13,10 @@ En cada mundo se toman muestras aleatorias y se calcula cuántas no encuentran e
 
 Las excepciones y sus colores son simulados. El proyecto no estima la prevalencia de un rasgo real ni representa observaciones de OV/VO.
 
+## Visualizador
+
+La [página interactiva](https://ariel-rojas.github.io/linguistic-universals-simulation/) permite explorar los resultados guardados en este repositorio.
+
 ## Datos
 
 - **Población y parentesco:** 6.636 hojas del árbol MCC de *Global Language Tree Pipeline*, versión 2.0.0. El archivo se descarga desde la release original con el comando de preparación y se verifica mediante su huella digital. No se incluye una copia del árbol en este repositorio.

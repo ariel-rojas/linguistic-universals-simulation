@@ -34,7 +34,15 @@ def _valid_coordinates(row: dict, latitude_key: str, longitude_key: str):
 def _check_source_hashes(manifest: dict) -> None:
     """Detecta cambios en los archivos de entrada registrados."""
     for filename, expected_hash in manifest["source_sha256"].items():
-        observed_hash = hashlib.sha256((DATA_DIR / filename).read_bytes()).hexdigest()
+        source_path = DATA_DIR / filename
+        if not source_path.is_file():
+            if filename.startswith("global-language-summary-tree-"):
+                raise FileNotFoundError(
+                    "No se encontró el árbol MCC. Ejecuta "
+                    "`uv run universals-study download-data`."
+                )
+            raise FileNotFoundError(f"Falta el archivo de datos requerido: {source_path}")
+        observed_hash = hashlib.sha256(source_path.read_bytes()).hexdigest()
         if observed_hash != expected_hash:
             raise ValueError(f"Cambió el archivo de entrada {filename}; revisa el manifiesto")
 
