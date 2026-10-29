@@ -1,0 +1,21 @@
+{
+  "tree_release": "v2.0.0",
+  "tree_name": "STATE_1",
+  "tree_url": "https://github.com/rbouckaert/global-language-tree-pipeline/releases/download/v2.0.0/global-language-summary-tree-relabelled_cartoonised.tree.gz",
+  "n_tree_tips": 6636,
+  "tree_covariance": "shared Brownian branch time, normalized to correlation at each tip",
+  "tree_root_state": "fixed",
+  "coordinate_source": "Glottolog 5.3 languages_and_dialects_geo.csv",
+  "coordinate_source_url": "https://glottolog.org/download",
+  "coordinate_download_url": "https://cdstar.eva.mpg.de/bitstreams/EAEA0-608B-9919-A962-0/languages_and_dialects_geo.csv",
+  "coordinate_license": "CC BY 4.0",
+  "source_sha256": {
+    "global-language-summary-tree-relabelled_cartoonised.tree.gz": "35578af18d987e58172c88793b33e8ba60626404bdad246610cd94e73146cb46",
+    "glottolog_5_3_languages_and_dialects_geo.csv": "e1b68f09acadda3610ecb6704ffe573fcf5b73411ad1ad1f6396a3ff9754e702"
+  },
+  "expected_matches": {
+    "tree_languages_with_coordinates": 6626,
+    "tree_languages_without_coordinates": 10
+  }
+}
+

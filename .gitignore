@@ -1,0 +1,15 @@
+# Entorno y cachés de Python
+.venv/
+__pycache__/
+*.py[cod]
+.ruff_cache/
+.pytest_cache/
+.coverage
+
+# Árbol MCC: se descarga desde la release original y no se redistribuye aquí
+/data/global-language-summary-tree-relabelled_cartoonised.tree.gz
+/data/*.tree.gz.download
+
+# Artefactos temporales de publicación
+_site/
+
