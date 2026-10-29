@@ -18,7 +18,7 @@ Se comparan tres escenarios:
 2. **Árbol MCC.** Las propensiones a la excepción tienen correlación según el tiempo de ramas compartidas por las lenguas.
 3. **R perfectamente correlacionada.** Todas las lenguas comparten la misma propensión latente dentro de cada mundo.
 
-La página muestra las tres distribuciones y permite elegir un escenario, un valor de p y una iteración. El mapa presenta la iteración elegida; una línea marca su proporción de excepciones en el histograma. Como esa proporción está en el eje horizontal, la marca es vertical. Otra línea indica la prevalencia marginal p.
+La página muestra las tres distribuciones y permite elegir un escenario, un valor de p y una iteración. El mapa y el gráfico por iteración se actualizan juntos: un punto rojo marca el mundo elegido y una línea horizontal señala su proporción de excepciones. En el histograma general, esa misma proporción aparece con una línea vertical porque allí la proporción está en el eje horizontal. Otra línea indica la prevalencia marginal p.
 
 ## Cómo se genera un mundo
 
@@ -63,8 +63,9 @@ Yᵢ vale 1 si la lengua i tiene una excepción simulada y 0 si no la tiene. En 
 
 - **Mapa:** las ubicaciones corresponden a lenguas reales. El color de cada punto es una etiqueta simulada del mundo seleccionado.
 - **Distribución:** cada histograma resume la proporción de excepciones en todos los mundos de un escenario para el p elegido.
+- **Gráfico por iteración:** muestra la proporción de excepciones de cada mundo simulado en el orden en que se generó. El punto rojo y la línea horizontal corresponden al mundo que aparece en el mapa; la línea vertical del mismo color marca su número de iteración.
 - **Línea de p:** señala la prevalencia marginal configurada.
-- **Línea del mundo mostrado:** señala en qué proporción cae la iteración visible en el mapa. Al cambiar el escenario o mover el control de iteración, la línea y el mapa se actualizan juntos.
+- **Marca del mundo mostrado en el histograma:** señala en qué proporción cae la iteración visible en el mapa. Al cambiar el escenario o mover el control de iteración, las marcas y el mapa se actualizan juntos.
 - **Ficha de lengua:** al seleccionar un punto, muestra su nombre, glottocódigo, macroárea, coordenadas y etiqueta simulada.
 - **Lenguas sin coordenadas:** siguen participando en la generación y en los porcentajes, pero no se colocan artificialmente en el mapa.
 

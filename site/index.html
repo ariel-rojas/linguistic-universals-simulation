@@ -83,8 +83,17 @@
             <span><i class="legend-line exact-line"></i>Prevalencia marginal p</span>
             <span><i class="legend-line selected-line"></i>Mundo mostrado en el mapa</span>
           </div>
+          <p class="chart-axis-note">En esta distribución, el eje horizontal es la proporción de excepciones y el vertical es la fracción de mundos.</p>
+          <h4 class="iteration-chart-title">Proporción en cada iteración</h4>
+          <p class="chart-intro">Cada punto es un mundo simulado del escenario actual. La línea horizontal y el punto rojo señalan el mundo que aparece en el mapa.</p>
+          <canvas id="iteration-prevalence-chart" width="620" height="230" aria-label="Proporción de excepciones por número de iteración"></canvas>
+          <div class="chart-legend iteration-legend">
+            <span><i class="legend-line exact-line"></i>Prevalencia marginal p</span>
+            <span><i class="legend-line selected-line"></i>Proporción del mundo seleccionado</span>
+            <span><i class="legend-dot selected-dot"></i>Iteración mostrada en el mapa</span>
+          </div>
           <p id="selected-world-label" class="chart-axis-note"></p>
-          <p class="chart-axis-note">Eje horizontal: proporción de excepciones. Eje vertical: fracción de mundos simulados.</p>
+          <p class="chart-axis-note">En este gráfico, el eje horizontal es el número de iteración y el vertical es la proporción de excepciones.</p>
         </aside>
       </div>
 

@@ -72,6 +72,11 @@ body {
 .side-card canvas { display: block; width: 100%; height: auto; }
 .chart-legend { display: flex; flex-wrap: wrap; gap: 6px 12px; margin: 0 0 8px; color: var(--muted); font-size: .72rem; }
 .legend-line { display: inline-block; width: 18px; margin-right: 5px; border-top: 3px solid #62776e; vertical-align: middle; }
+.iteration-chart-title { margin: 18px 0 3px; font-size: .96rem; }
+.chart-intro { margin: 0 0 4px !important; font-size: .8rem !important; }
+.iteration-legend { margin-top: 2px; }
+.legend-dot { display: inline-block; width: 9px; height: 9px; margin: 0 8px 0 5px; border-radius: 50%; vertical-align: middle; }
+.selected-dot { background: #d24d57; }
 .phylo-line { border-color: #a23e84; }
 .global-line { border-color: #4385b8; }
 .exact-line { border-top: 2px dashed #253b34; }

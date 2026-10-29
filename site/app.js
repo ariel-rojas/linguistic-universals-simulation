@@ -214,6 +214,97 @@ function drawPrevalenceDistribution(run, selectedScenario, selectedIteration) {
     "selected-world-label",
     `Iteración ${selectedIteration.iteration} · ${label}: ${percent(selectedIteration.population_prevalence)} de excepciones`,
   );
+  drawIterationPrevalence(run, selectedScenario, selectedIteration);
+}
+
+/** Dibuja la proporción observada en cada mundo del escenario activo. */
+function drawIterationPrevalence(run, selectedScenario, selectedIteration) {
+  const canvas = document.getElementById("iteration-prevalence-chart");
+  const ctx = canvas.getContext("2d");
+  const width = canvas.width;
+  const height = canvas.height;
+  ctx.clearRect(0, 0, width, height);
+
+  const iterations = run.scenarios[selectedScenario].iterations;
+  const values = iterations.map((iteration) => iteration.population_prevalence);
+  const maximum = Math.max(...values, run.prevalence, 0.01);
+  const yMax = Math.min(1, Math.max(0.05, maximum * 1.1));
+  const margin = { left: 52, right: 18, top: 14, bottom: 34 };
+  const plotW = width - margin.left - margin.right;
+  const plotH = height - margin.top - margin.bottom;
+  const xFor = (index) => margin.left + (iterations.length < 2
+    ? plotW / 2
+    : (index / (iterations.length - 1)) * plotW);
+  const yFor = (value) => margin.top + plotH * (1 - value / yMax);
+
+  ctx.font = "10px system-ui";
+  ctx.fillStyle = "#5b6b66";
+  ctx.strokeStyle = "#e0e4df";
+  for (let step = 0; step <= 4; step++) {
+    const fraction = step / 4;
+    const y = margin.top + plotH * (1 - fraction);
+    ctx.beginPath();
+    ctx.moveTo(margin.left, y);
+    ctx.lineTo(width - margin.right, y);
+    ctx.stroke();
+    ctx.fillText(`${(yMax * fraction * 100).toFixed(0)} %`, 4, y + 3);
+  }
+
+  // Una línea muestra p; otra marca la proporción del mundo visible en el mapa.
+  const drawHorizontal = (value, color, dash, lineWidth) => {
+    const y = yFor(value);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = lineWidth;
+    ctx.setLineDash(dash);
+    ctx.beginPath();
+    ctx.moveTo(margin.left, y);
+    ctx.lineTo(width - margin.right, y);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  };
+  drawHorizontal(run.prevalence, "#263b34", [5, 5], 1.5);
+  drawHorizontal(selectedIteration.population_prevalence, "#d24d57", [], 2);
+
+  const scenarioColor = {
+    independent: "#62776e",
+    phylogenetic: "#a23e84",
+    all_correlated: "#4385b8",
+  }[selectedScenario];
+  ctx.strokeStyle = scenarioColor;
+  ctx.lineWidth = 1.7;
+  ctx.beginPath();
+  values.forEach((value, index) => {
+    const x = xFor(index);
+    const y = yFor(value);
+    if (index === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  const selectedIndex = Math.max(0, iterations.findIndex(
+    (iteration) => iteration.iteration === selectedIteration.iteration,
+  ));
+  const selectedX = xFor(selectedIndex);
+  const selectedY = yFor(selectedIteration.population_prevalence);
+  ctx.strokeStyle = "#d24d57";
+  ctx.lineWidth = 1;
+  ctx.setLineDash([3, 3]);
+  ctx.beginPath();
+  ctx.moveTo(selectedX, margin.top);
+  ctx.lineTo(selectedX, margin.top + plotH);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = "#d24d57";
+  ctx.beginPath();
+  ctx.arc(selectedX, selectedY, 4.5, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.strokeStyle = "#fff";
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  ctx.fillStyle = "#5b6b66";
+  ctx.fillText("1", margin.left - 2, height - 11);
+  ctx.fillText(String(iterations.length), width - margin.right - 16, height - 11);
 }
 
 function setupPrevalenceControl() {
