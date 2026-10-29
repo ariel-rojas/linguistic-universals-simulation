@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Simulación de excepciones lingüísticas bajo independencia y dependencia filogenética.">
-  <title>Universales lingüísticos · dependencia filogenética</title>
+  <meta name="description" content="Explorador de universales lingüísticos con dependencia filogenética simulada.">
+  <title>Universales lingüísticos · simulación filogenética</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="hero">
     <div class="hero-inner">
       <p class="eyebrow">ESTUDIO DE SIMULACIÓN</p>
-      <h1>¿Cuándo una muestra<br>hace parecer universal un rasgo?</h1>
-      <p class="lede">Comparamos mundos independientes con mundos en los que las propensiones lingüísticas siguen una matriz de dependencia filogenética.</p>
-      <p class="notice"><strong>Qué es real y qué se simula:</strong> la población incluye todas las hojas del árbol MCC. Glottolog aporta los nombres y las coordenadas publicadas. Las etiquetas de excepción se generan para el experimento; no son valores observados de una característica lingüística.</p>
+      <h1>¿Cómo cambia un universal aparente<br>cuando las lenguas dependen?</h1>
+      <p class="lede">Comparamos la proporción de excepciones que aparece en mundos independientes, en el árbol MCC y bajo correlación global perfecta.</p>
+      <p class="notice"><strong>Qué es real y qué se simula:</strong> la población incluye las hojas del árbol MCC y sus ubicaciones de Glottolog. Las excepciones y sus colores son simulados; no son valores observados de OV/VO ni de otra característica lingüística.</p>
     </div>
   </header>
 
@@ -21,30 +21,31 @@
     <section class="facts" aria-label="Datos de esta ejecución">
       <article><span id="population-count">—</span><small>lenguas en el árbol MCC</small></article>
       <article><span id="mapped-count">—</span><small>lenguas ubicadas en el mapa</small></article>
-      <article><span id="replicate-count">—</span><small>mundos por escenario</small></article>
+      <article><span id="replicate-count">—</span><small>mundos por escenario y por p</small></article>
       <article><span id="prevalence-label">—</span><small>prevalencia marginal p</small></article>
     </section>
 
     <nav class="tabs" aria-label="Secciones del explorador">
-      <button class="tab active" data-section="simulation-section">Simulación</button>
-      <button class="tab" data-section="workflow-section">Cómo se construye</button>
+      <a class="tab active" href="./">Explorador</a>
+      <a class="tab" href="https://github.com/ariel-rojas/linguistic-universals-simulation/blob/main/README.md" target="_blank" rel="noopener">Cómo se construye · README</a>
     </nav>
 
-    <section id="simulation-section" class="panel active-panel">
+    <section class="panel active-panel">
       <div class="section-heading">
         <div>
           <p class="eyebrow">MUNDOS POSIBLES</p>
-          <h2>¿Qué excepciones encuentra la muestra?</h2>
-          <p>En cada iteración se genera un mundo completo. Luego se toman muestras aleatorias y se mide si alguna excepción queda sin observar.</p>
+          <h2>Proporción de excepciones en cada mundo</h2>
+          <p>Cada iteración representa un mundo completo. El mapa y la línea del gráfico muestran la misma iteración.</p>
         </div>
         <div class="controls compact">
-          <label>Prevalencia de excepciones p
+          <label>Prevalencia marginal p
             <select id="prevalence-select"></select>
           </label>
-          <label>Dependencia de las lenguas
+          <label>Estructura de dependencia
             <select id="scenario-select">
-              <option value="independent">Independientes</option>
-              <option value="phylogenetic">Matriz R seleccionada</option>
+              <option value="independent">Lenguas independientes</option>
+              <option value="phylogenetic">Árbol MCC</option>
+              <option value="all_correlated">R perfectamente correlacionada</option>
             </select>
           </label>
           <label>Iteración <span id="iteration-label">1</span>
@@ -57,60 +58,40 @@
 
       <div class="simulation-grid">
         <div class="map-card">
-          <div class="map-title"><strong>Un mundo simulado</strong><span id="world-summary">—</span></div>
-          <div class="map-scroll"><svg id="simulation-map" class="world-map" viewBox="0 0 1200 600" role="img" aria-label="Mapa de lenguas con excepciones simuladas"></svg></div>
+          <div class="map-title"><strong>Mundo que muestra el mapa</strong><span id="world-summary">—</span></div>
+          <div class="map-scroll"><svg id="simulation-map" class="world-map" viewBox="0 0 1200 600" role="img" aria-label="Lenguas con excepciones simuladas en un mundo"></svg></div>
           <div class="legend"><span><i class="dot common"></i> Sin excepción simulada</span><span><i class="dot exception"></i> Excepción simulada</span></div>
-          <p class="map-caption">Se muestran las hojas MCC con coordenadas publicadas en Glottolog 5.3. El color representa una etiqueta simulada. Las hojas sin coordenadas siguen incluidas en la simulación.</p>
+          <p class="map-caption">Cada punto es una hoja del MCC con coordenadas publicadas en Glottolog 5.3. La ubicación es real; la etiqueta que muestra el color es simulada.</p>
           <p id="coordinate-coverage" class="map-caption"></p>
           <details class="unmapped-languages">
             <summary id="unmapped-heading">Hojas sin coordenadas</summary>
-            <p>Estas lenguas forman parte de la población y del mundo simulado, pero no se asigna una posición geográfica inventada.</p>
+            <p>También participan en la simulación; no se les asigna una posición inventada.</p>
             <ul id="unmapped-language-list"></ul>
           </details>
         </div>
 
         <aside class="side-card">
-          <h3>Probabilidad de no encontrar excepciones</h3>
-          <p>Entre los mundos que sí tienen excepciones, indica con qué frecuencia una muestra aleatoria no encuentra ninguna.</p>
-          <canvas id="false-universal-chart" width="620" height="300" aria-label="Tasa de muestras sin excepciones según el tamaño muestral"></canvas>
-          <div class="chart-legend"><span><i class="legend-line independent-line"></i>Independiente</span><span><i class="legend-line phylo-line"></i>R seleccionada</span><span><i class="legend-line exact-line"></i>Referencia independiente</span></div>
-          <div id="false-universal-table" class="rate-table"></div>
-
-          <h3 class="chart-heading">Proporción de excepciones por iteración</h3>
-          <p>Cada barra agrupa mundos según su proporción realizada de excepciones. La escala horizontal se ajusta a la distribución para que se vean también valores pequeños de p.</p>
-          <canvas id="prevalence-distribution-chart" width="620" height="250" aria-label="Distribución de la prevalencia simulada entre mundos"></canvas>
-          <div class="chart-legend"><span><i class="legend-line independent-line"></i>Independiente</span><span><i class="legend-line phylo-line"></i>R seleccionada</span><span><i class="legend-line exact-line"></i>Prevalencia configurada</span></div>
-          <p class="chart-axis-note">Eje horizontal: proporción de excepciones del mundo. Eje vertical: porcentaje de las iteraciones.</p>
+          <h3>Distribución entre mundos</h3>
+          <p>Cada barra agrupa mundos según su proporción realizada de excepciones.</p>
+          <canvas id="prevalence-distribution-chart" width="620" height="340" aria-label="Distribución de la proporción de excepciones entre mundos simulados"></canvas>
+          <div class="chart-legend">
+            <span><i class="legend-line independent-line"></i>Independientes</span>
+            <span><i class="legend-line phylo-line"></i>Árbol MCC</span>
+            <span><i class="legend-line global-line"></i>R perfectamente correlacionada</span>
+          </div>
+          <div class="chart-legend">
+            <span><i class="legend-line exact-line"></i>Prevalencia marginal p</span>
+            <span><i class="legend-line selected-line"></i>Mundo mostrado en el mapa</span>
+          </div>
+          <p id="selected-world-label" class="chart-axis-note"></p>
+          <p class="chart-axis-note">Eje horizontal: proporción de excepciones. Eje vertical: fracción de mundos simulados.</p>
         </aside>
       </div>
-      <div id="language-card" class="language-card empty">Seleccioná un punto del mapa para ver los datos de la lengua y su etiqueta simulada.</div>
+
+      <div id="language-card" class="language-card empty">Seleccioná un punto del mapa para ver la ficha de la lengua y su etiqueta simulada.</div>
     </section>
 
-    <section id="workflow-section" class="panel prose-panel">
-      <p class="eyebrow">FLUJO DEL EXPERIMENTO</p>
-      <h2>De las lenguas a la comparación</h2>
-      <div class="steps">
-        <article><b>1</b><div><h3>Incluimos las hojas del MCC</h3><p>La población son las 6.636 hojas del árbol, una por glottocódigo. Usamos Glottolog 5.3 para los nombres y las coordenadas: 6.626 hojas quedan ubicadas. Las otras diez siguen en el experimento sin una posición inventada.</p></div></article>
-        <article><b>2</b><div><h3>Generamos excepciones</h3><p>En el escenario independiente cada lengua se sortea por separado. En el correlacionado, las propensiones latentes se generan conjuntamente usando R y luego se sortean las etiquetas.</p></div></article>
-        <article><b>3</b><div><h3>Tomamos muestras y resumimos</h3><p>Repetimos la generación del mundo, medimos su prevalencia real y seleccionamos muestras aleatorias sin reemplazo. Contamos las muestras sin excepciones y comparamos la distribución de prevalencias.</p></div></article>
-      </div>
-
-      <h3>La matriz R</h3>
-      <p id="matrix-explanation">—</p>
-      <div class="equation">f ~ Normal(0, σ² R)<br>qᵢ = Φ(α + fᵢ)<br>Yᵢ ~ Bernoulli(qᵢ)</div>
-      <p><strong>R</strong> define qué propensiones tienden a parecerse. <strong>σ</strong> controla su amplitud. <strong>qᵢ</strong> es la probabilidad condicional de excepción de una lengua. La calibración del intercepto conserva la prevalencia marginal configurada <strong>p</strong>; no fija la proporción de excepciones de cada mundo. El campo se genera recorriendo las ramas, sin crear una matriz de 6.636 por 6.636 valores.</p>
-
-      <h3>Qué se muestra en el mapa</h3>
-      <p>Las posiciones y las fichas describen lenguas reales de la tabla enlazada. El color de cada iteración es artificial y se genera bajo el escenario elegido. Por eso el mapa permite ver cómo una estructura simulada se proyectaría sobre ubicaciones reales, pero no muestra la distribución observada de OV/VO ni confirma un universal.</p>
-
-      <h3>Alcance</h3>
-      <p>La población del experimento son todas las hojas del MCC; no equivale a todas las lenguas vivas ni a un censo de los valores de una característica. La muestra aleatoria sirve para aislar el efecto del tamaño: no controla la dependencia genealógica en su diseño. Las etiquetas son simuladas y no permiten inferir si una característica real es universal.</p>
-      <h3>Qué tamaños de muestra se usan en tipología</h3>
-      <p>No hay un máximo universal: depende de si se busca representar diversidad, estimar frecuencias o argumentar que un rasgo no tiene excepciones. Piantadosi y Gibson proponen como regla de referencia al menos 500 lenguas estadísticamente independientes para sostener universales absolutos; no es un estándar consensuado ni significa que 500 lenguas emparentadas cuenten como 500 observaciones independientes. Este experimento explora desde 100 hasta las 6.636 hojas completas para mostrar el efecto del tamaño bajo sus supuestos.</p>
-      <p class="source-note">Árbol: <a href="https://github.com/rbouckaert/global-language-tree-pipeline/releases/tag/v2.0.0">Global Language Tree Pipeline v2.0.0</a>. Nombres y coordenadas: <a href="https://glottolog.org/download">Glottolog 5.3</a>. Lecturas: <a href="https://doi.org/10.1515/lingty-2016-0006">Miestamo, Bakker y Arppe (2016), muestreo para diversidad</a>; <a href="https://doi.org/10.1111/cogs.12088">Piantadosi y Gibson (2014), estándares cuantitativos para universales absolutos</a>.</p>
-    </section>
-
-    <footer>Experimento metodológico · El mapa usa ubicaciones de lenguas reales y etiquetas simuladas.</footer>
+    <footer>Experimento metodológico · Coordenadas reales, excepciones simuladas.</footer>
   </main>
   <script src="app.js"></script>
 </body>

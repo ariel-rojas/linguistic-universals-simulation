@@ -4,6 +4,9 @@ import gzip
 import hashlib
 import io
 import re
+import shutil
+import subprocess
+import urllib.error
 import urllib.request
 from dataclasses import dataclass
 
@@ -72,11 +75,37 @@ def load_mcc_tree():
 
 
 def download_mcc_tree() -> None:
-    """Descarga el MCC oficial y comprueba su huella antes de guardarlo."""
+    """Descarga el MCC oficial y verifica la huella antes de guardarlo.
+
+    Si la validación TLS de Python no puede leer el certificado del sistema,
+    se usa curl del sistema operativo, que suele compartir el almacén de
+    certificados de Windows. La huella SHA-256 se valida en ambos casos.
+    """
     TREE_FILE.parent.mkdir(parents=True, exist_ok=True)
     temporary_file = TREE_FILE.with_suffix(TREE_FILE.suffix + ".download")
     try:
-        urllib.request.urlretrieve(TREE_URL, temporary_file)
+        try:
+            urllib.request.urlretrieve(TREE_URL, temporary_file)
+        except urllib.error.URLError:
+            curl = shutil.which("curl.exe") or shutil.which("curl")
+            if curl is None:
+                raise RuntimeError(
+                    "No se pudo descargar el árbol con Python y no se encontró curl. "
+                    "Instala curl o descarga el archivo oficial manualmente."
+                )
+            subprocess.run(
+                [
+                    curl,
+                    "--fail",
+                    "--location",
+                    "--silent",
+                    "--show-error",
+                    "--output",
+                    str(temporary_file),
+                    TREE_URL,
+                ],
+                check=True,
+            )
         content = temporary_file.read_bytes()
         if hashlib.sha256(content).hexdigest() != TREE_SHA256:
             raise ValueError("La huella del árbol descargado no coincide con la release")

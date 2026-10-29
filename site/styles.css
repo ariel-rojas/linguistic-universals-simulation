@@ -36,7 +36,7 @@ body {
 .facts small { color: var(--muted); }
 
 .tabs { display: flex; gap: 8px; margin: 20px 0; border-bottom: 1px solid var(--line); }
-.tab { padding: 12px 16px; border: 0; border-bottom: 3px solid transparent; background: transparent; color: var(--muted); font: inherit; font-weight: 700; cursor: pointer; }
+.tab { padding: 12px 16px; border: 0; border-bottom: 3px solid transparent; background: transparent; color: var(--muted); font: inherit; font-weight: 700; cursor: pointer; text-decoration: none; }
 .tab.active { border-bottom-color: var(--green); color: var(--green); }
 .panel { display: none; padding: 12px 0 36px; }
 .active-panel { display: block; }
@@ -68,16 +68,15 @@ body {
 .unmapped-languages ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 18px; margin: 6px 0; padding-left: 20px; }
 
 .side-card h3 { margin: 1px 0 6px; font-size: 1.1rem; }
-.side-card .chart-heading { margin-top: 24px; }
 .side-card > p { margin: 0 0 8px; color: var(--muted); font-size: .88rem; }
 .side-card canvas { display: block; width: 100%; height: auto; }
 .chart-legend { display: flex; flex-wrap: wrap; gap: 6px 12px; margin: 0 0 8px; color: var(--muted); font-size: .72rem; }
 .legend-line { display: inline-block; width: 18px; margin-right: 5px; border-top: 3px solid #62776e; vertical-align: middle; }
 .phylo-line { border-color: #a23e84; }
+.global-line { border-color: #4385b8; }
 .exact-line { border-top: 2px dashed #253b34; }
-.rate-table { display: grid; grid-template-columns: 1fr auto auto auto; gap: 6px 8px; margin-top: 8px; font-size: .76rem; }
-.rate-table .head { padding-bottom: 4px; border-bottom: 1px solid var(--line); color: var(--muted); font-weight: 800; }
-.rate-table .rate { text-align: right; font-variant-numeric: tabular-nums; }
+.selected-line { border-color: #d24d57; }
+.chart-axis-note { margin-top: 7px !important; font-size: .78rem !important; }
 .language-card { min-height: 74px; margin-top: 16px; padding: 16px 20px; }
 .language-card.empty { color: var(--muted); font-size: .9rem; }
 .language-card h3 { margin: 0 0 5px; }

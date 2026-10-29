@@ -3,105 +3,48 @@
 Semilla: **20261029**.
 Población: **6,636 hojas MCC**; 6,626 ubicadas en el mapa.
 Mundos por escenario y valor de p: **2,000**.
-Matriz: **Árbol MCC completo, sin bloquear familias**.
 
-El intervalo central del 95 % muestra la variación entre mundos; la tasa de no detección se calcula solo en mundos con al menos una excepción.
+La tabla muestra la media y el intervalo central del 95 % de la proporción realizada de excepciones entre los mundos simulados.
 
 ## Prevalencia marginal p = 1.0%
 
-### Proporción de excepciones en el mundo completo
-
 | Escenario | Media | Intervalo central del 95 % |
 |---|---:|---:|
-| Independiente | 1.00% | 0.77%–1.25% |
-| R seleccionada | 1.00% | 0.03%–5.62% |
-
-### Muestras sin excepciones
-
-| Lenguas observadas | Independiente | R seleccionada | Referencia independiente exacta |
-|---:|---:|---:|---:|
-| 100 | 36.45% (729/2000) | 56.51% (1120/1982) | 36.60% |
-| 200 | 13.90% (278/2000) | 40.57% (804/1982) | 13.40% |
-| 500 | 0.70% (14/2000) | 21.09% (418/1982) | 0.66% |
-| 1,000 | 0.00% (0/2000) | 10.95% (217/1982) | 0.00% |
-| 1,370 | 0.00% (0/2000) | 7.87% (156/1982) | 0.00% |
-| 2,000 | 0.00% (0/2000) | 4.89% (97/1982) | 0.00% |
-| 4,000 | 0.00% (0/2000) | 1.16% (23/1982) | 0.00% |
-| 6,636 | 0.00% (0/2000) | 0.00% (0/1982) | 0.00% |
+| Lenguas independientes | 1.00% | 0.77%–1.25% |
+| Árbol MCC | 0.98% | 0.03%–5.49% |
+| R perfectamente correlacionada | 0.99% | 0.00%–9.15% |
 
 ## Prevalencia marginal p = 5.0%
 
-### Proporción de excepciones en el mundo completo
-
 | Escenario | Media | Intervalo central del 95 % |
 |---|---:|---:|
-| Independiente | 5.00% | 4.48%–5.53% |
-| R seleccionada | 5.01% | 0.41%–19.22% |
-
-### Muestras sin excepciones
-
-| Lenguas observadas | Independiente | R seleccionada | Referencia independiente exacta |
-|---:|---:|---:|---:|
-| 100 | 0.55% (11/2000) | 13.45% (269/2000) | 0.59% |
-| 200 | 0.00% (0/2000) | 4.75% (95/2000) | 0.00% |
-| 500 | 0.00% (0/2000) | 1.05% (21/2000) | 0.00% |
-| 1,000 | 0.00% (0/2000) | 0.25% (5/2000) | 0.00% |
-| 1,370 | 0.00% (0/2000) | 0.10% (2/2000) | 0.00% |
-| 2,000 | 0.00% (0/2000) | 0.05% (1/2000) | 0.00% |
-| 4,000 | 0.00% (0/2000) | 0.00% (0/2000) | 0.00% |
-| 6,636 | 0.00% (0/2000) | 0.00% (0/2000) | 0.00% |
+| Lenguas independientes | 4.99% | 4.49%–5.50% |
+| Árbol MCC | 4.91% | 0.39%–18.22% |
+| R perfectamente correlacionada | 4.54% | 0.00%–31.26% |
 
 ## Prevalencia marginal p = 10.0%
 
-### Proporción de excepciones en el mundo completo
-
 | Escenario | Media | Intervalo central del 95 % |
 |---|---:|---:|
-| Independiente | 10.01% | 9.31%–10.74% |
-| R seleccionada | 10.06% | 1.15%–30.85% |
-
-### Muestras sin excepciones
-
-| Lenguas observadas | Independiente | R seleccionada | Referencia independiente exacta |
-|---:|---:|---:|---:|
-| 100 | 0.00% (0/2000) | 3.70% (74/2000) | 0.00% |
-| 200 | 0.00% (0/2000) | 1.20% (24/2000) | 0.00% |
-| 500 | 0.00% (0/2000) | 0.05% (1/2000) | 0.00% |
-| 1,000 | 0.00% (0/2000) | 0.00% (0/2000) | 0.00% |
-| 1,370 | 0.00% (0/2000) | 0.00% (0/2000) | 0.00% |
-| 2,000 | 0.00% (0/2000) | 0.00% (0/2000) | 0.00% |
-| 4,000 | 0.00% (0/2000) | 0.00% (0/2000) | 0.00% |
-| 6,636 | 0.00% (0/2000) | 0.00% (0/2000) | 0.00% |
+| Lenguas independientes | 10.00% | 9.28%–10.73% |
+| Árbol MCC | 10.40% | 1.22%–31.92% |
+| R perfectamente correlacionada | 9.70% | 0.00%–53.01% |
 
 ## Prevalencia marginal p = 20.0%
 
-### Proporción de excepciones en el mundo completo
-
 | Escenario | Media | Intervalo central del 95 % |
 |---|---:|---:|
-| Independiente | 20.00% | 19.08%–20.98% |
-| R seleccionada | 20.03% | 3.80%–49.39% |
+| Lenguas independientes | 20.00% | 19.02%–20.96% |
+| Árbol MCC | 20.18% | 3.69%–48.96% |
+| R perfectamente correlacionada | 20.19% | 0.11%–75.83% |
 
-### Muestras sin excepciones
+## Interpretación
 
-| Lenguas observadas | Independiente | R seleccionada | Referencia independiente exacta |
-|---:|---:|---:|---:|
-| 100 | 0.00% (0/2000) | 0.20% (4/2000) | 0.00% |
-| 200 | 0.00% (0/2000) | 0.00% (0/2000) | 0.00% |
-| 500 | 0.00% (0/2000) | 0.00% (0/2000) | 0.00% |
-| 1,000 | 0.00% (0/2000) | 0.00% (0/2000) | 0.00% |
-| 1,370 | 0.00% (0/2000) | 0.00% (0/2000) | 0.00% |
-| 2,000 | 0.00% (0/2000) | 0.00% (0/2000) | 0.00% |
-| 4,000 | 0.00% (0/2000) | 0.00% (0/2000) | 0.00% |
-| 6,636 | 0.00% (0/2000) | 0.00% (0/2000) | 0.00% |
+La prevalencia marginal p es la media esperada a través de muchos mundos. La proporción observada cambia de mundo a mundo; las estructuras de correlación determinan cuánto varía.
 
-## Alcance
-
-El histograma del visualizador resume la proporción realizada de excepciones en cada mundo simulado. El mapa usa coordenadas reales; sus etiquetas de excepción son simuladas.
-
-Una muestra del tamaño de toda la población equivale a observar el censo del árbol y, por definición, no puede omitir una excepción que esté en él.
+El mapa usa coordenadas de lenguas reales y colores simulados. La línea del histograma indica la proporción del mundo que está visible en el mapa.
 
 ## Archivos
 
-- `study.json`: datos de la página interactiva.
-- `report.md`: este resumen.
+- study.json: datos que consume la página interactiva.
+- report.md: este resumen.

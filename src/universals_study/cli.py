@@ -31,7 +31,8 @@ def main() -> None:
 
     if args.command == "download-data":
         download_mcc_tree()
-        print(f"Árbol descargado y verificado: {PROJECT_ROOT / 'data' / 'global-language-summary-tree-relabelled_cartoonised.tree.gz'}")
+        tree_path = PROJECT_ROOT / "data" / "global-language-summary-tree-relabelled_cartoonised.tree.gz"
+        print(f"Árbol descargado y verificado: {tree_path}")
         return
 
     handler = partial(SimpleHTTPRequestHandler, directory=str(PROJECT_ROOT))
